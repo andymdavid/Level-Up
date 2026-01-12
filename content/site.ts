@@ -106,30 +106,50 @@ export const siteContent: SiteContent = {
       props: {
         title: "Everything you need to succeed",
         subtitle: "Powerful features designed to help you convert more visitors",
-        benefits: [
+        items: [
           {
-            title: "Content-Driven",
+            title: "Content-Driven Architecture",
             description:
-              "Edit copy and structure without touching code. Perfect for rapid iteration.",
+              "Edit copy and structure without touching code. Perfect for rapid iteration and testing.",
             icon: "FileText",
+            highlight: true,
+            bullets: [
+              "No JSX changes needed",
+              "Agent-friendly format",
+              "Version controlled content",
+            ],
           },
           {
             title: "Responsive Design",
             description:
-              "Beautiful on every device. Mobile-first approach ensures great UX.",
+              "Beautiful on every device with mobile-first approach ensuring great UX everywhere.",
             icon: "Smartphone",
           },
           {
-            title: "Type-Safe",
+            title: "Type-Safe Development",
             description:
-              "Full TypeScript support means fewer bugs and better DX.",
+              "Full TypeScript support means fewer bugs, better autocomplete, and improved developer experience.",
             icon: "Shield",
+            bullets: ["Compile-time checks", "Better IDE support", "Fewer runtime errors"],
           },
           {
-            title: "Performance",
+            title: "Performance Optimized",
             description:
-              "Built on Next.js for optimal loading speed and SEO.",
+              "Built on Next.js 15 with App Router for optimal loading speed and SEO.",
             icon: "Zap",
+          },
+          {
+            title: "Production Ready",
+            description:
+              "Deploy with confidence using battle-tested components and best practices.",
+            icon: "CheckCircle",
+            bullets: ["Zero config deployment", "SEO optimized", "Accessibility built-in"],
+          },
+          {
+            title: "Easy to Customize",
+            description:
+              "Tailwind CSS and shadcn/ui make it simple to match your brand perfectly.",
+            icon: "Palette",
           },
         ],
       },
