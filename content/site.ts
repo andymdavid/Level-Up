@@ -66,11 +66,18 @@ export const siteContent: SiteContent = {
       id: "hero",
       variant: "default",
       props: {
+        badge: "🚀 New: AI-powered content generation",
         title: "Build Landing Pages That Convert",
         subtitle:
           "A content-driven template system for creating high-converting SaaS landing pages. Edit content, not code.",
-        ctaPrimary: "Get Started",
-        ctaSecondary: "Learn More",
+        ctaPrimary: { label: "Get Started", href: "#pricing" },
+        ctaSecondary: { label: "View Demo", href: "#benefits" },
+        socialProof: "Trusted by 500+ developers and teams worldwide",
+        media: {
+          type: "image",
+          src: "/hero-screenshot.png",
+          alt: "Landing page builder interface",
+        },
       },
     },
     {
