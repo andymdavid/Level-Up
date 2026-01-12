@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { siteContent } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Landing Template Starter",
-  description: "A Next.js landing page template",
+  title: siteContent.page.title || siteContent.site.name,
+  description: siteContent.page.description || siteContent.site.tagline,
 };
 
 export default function RootLayout({
