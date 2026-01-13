@@ -74,11 +74,6 @@ export const siteContent: SiteContent = {
         ctaPrimary: { label: "Get Started", href: "#pricing" },
         ctaSecondary: { label: "View Demo", href: "#benefits" },
         socialProof: "Trusted by 500+ developers and teams worldwide",
-        media: {
-          type: "image",
-          src: "/hero-screenshot.png",
-          alt: "Landing page builder interface",
-        },
       },
     },
     {
