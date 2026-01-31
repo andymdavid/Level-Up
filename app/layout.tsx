@@ -1,6 +1,18 @@
 import type { Metadata } from "next";
+import { Inter, Anton } from "next/font/google";
 import "./globals.css";
 import { siteContent } from "@/content/site";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const anton = Anton({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-anton",
+});
 
 export const metadata: Metadata = {
   title: siteContent.page.title || siteContent.site.name,
@@ -14,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${inter.variable} ${anton.variable} font-sans`}>{children}</body>
     </html>
   );
 }

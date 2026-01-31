@@ -72,7 +72,6 @@ export const siteContent: SiteContent = {
         subtitle:
           "A content-driven template system for creating high-converting SaaS landing pages. Edit content, not code.",
         ctaPrimary: { label: "Get Started", href: "#pricing" },
-        ctaSecondary: { label: "View Demo", href: "#benefits" },
         socialProof: "Trusted by 500+ developers and teams worldwide",
       },
     },
