@@ -1,6 +1,7 @@
 import { SectionKey, SectionConfig } from "@/content/site";
 import { Navbar } from "./navbar";
 import { Hero } from "./hero";
+import { ArcCarousel } from "./arc-carousel";
 import { Logos } from "./logos";
 import { Benefits } from "./benefits";
 import { HowItWorks } from "./how-it-works";
@@ -14,6 +15,7 @@ import { Footer } from "./footer";
 const sectionComponents: Record<SectionKey, React.ComponentType<any>> = {
   navbar: Navbar,
   hero: Hero,
+  arcCarousel: ArcCarousel,
   logos: Logos,
   benefits: Benefits,
   howItWorks: HowItWorks,

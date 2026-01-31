@@ -2,6 +2,7 @@
 export type SectionKey =
   | "navbar"
   | "hero"
+  | "arcCarousel"
   | "logos"
   | "benefits"
   | "howItWorks"
@@ -73,6 +74,26 @@ export const siteContent: SiteContent = {
           "Level Up is a hands-on workshop where students learn how AI works in practice by building their very own game, gaining a practical understanding of how AI systems behave by actually using them.",
         ctaPrimary: { label: "Get Started", href: "#pricing" },
         socialProof: "Designed by Other Stuff, drawing on real-world AI work with teams in Australia and Silicon Valley",
+      },
+    },
+    {
+      key: "arcCarousel",
+      enabled: true,
+      props: {
+        cards: [
+          { id: "1", title: "Space Invaders", description: "Classic arcade shooter with AI enemies", badge: "Popular" },
+          { id: "2", title: "Platformer Adventure", description: "Jump and run with procedural levels" },
+          { id: "3", title: "Puzzle Quest", description: "AI-powered puzzle generation", badge: "New" },
+          { id: "4", title: "Racing Game", description: "Compete against AI opponents" },
+          { id: "5", title: "Tower Defense", description: "Strategic AI pathfinding" },
+          { id: "6", title: "RPG Battle", description: "Turn-based combat with smart enemies" },
+          { id: "7", title: "Maze Runner", description: "AI maze generation and solving" },
+          { id: "8", title: "Card Game", description: "AI opponent with learning strategies", badge: "Advanced" },
+        ],
+        speed: 50,
+        arcDepth: 80,
+        overlapTop: "-100px",
+        overlapBottom: "-40px",
       },
     },
     {
