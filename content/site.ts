@@ -2,6 +2,7 @@
 export type SectionKey =
   | "navbar"
   | "hero"
+  | "twoColumn"
   | "arcCarousel"
   | "logos"
   | "benefits"
@@ -99,8 +100,73 @@ export const siteContent: SiteContent = {
       },
     },
     {
-      key: "logos",
+      key: "twoColumn",
       enabled: true,
+      id: "twoColumn",
+      props: {
+        title: "What is Level-Up?",
+        body:
+          "Level Up is a guided, hands-on workshop designed for school students to learn how AI works by actually using it. During the session, students build their own games with AI coding agents, experimenting, iterating, and seeing how instructions turn into behaviour on screen. The workshop is facilitated step by step in a classroom setting, with students working through the process together alongside their teachers and making progress as they go. Level Up is designed to fit naturally into real school environments, focusing on practical experience and understanding of AI, rather than abstract explanation.",
+        blocksVariant: "feature",
+        minHeightClass: "min-h-[90vh]",
+        blocks: [
+          {
+            number: "01",
+            title: "Who it’s for",
+            body: "For high school students. Designed for mixed abilities, no prior coding required.",
+            video: "/Wizard.mp4",
+          },
+          {
+            number: "02",
+            title: "Session format",
+            body: "90-minute, facilitated workshop. Hands-on and guided from start to finish.",
+            video: "/girl.mp4",
+          },
+          {
+            number: "03",
+            title: "What students build",
+            body: "A playable game created using AI. Something they can run, test, and share.",
+            video: "/adventurer.mp4",
+          },
+        ],
+      },
+    },
+    {
+      key: "twoColumn",
+      enabled: true,
+      id: "twoColumn-2",
+      props: {
+        title: "Games are a powerful way to learn about AI",
+        body:
+          "Building games provides a familiar environment where students can experiment with AI, test ideas, and see results immediately. This makes learning practical and intuitive, rather than abstract.",
+        singleColumn: true,
+        blocks: [
+          {
+            number: "01",
+            title: "A low-stakes environment for experimentation",
+            body: "Games give students permission to try ideas, break things, and start again without consequence. That matters when learning how to use AI, because understanding comes from exploration rather than getting things right the first time.",
+          },
+          {
+            number: "02",
+            title: "Fast feedback makes learning visible",
+            body: "When students change a prompt or rule, they immediately see the result take shape on screen. This tight feedback loop helps them quickly build intuition for how AI systems respond and behave.",
+          },
+          {
+            number: "03",
+            title: "Iteration mirrors how AI works in practice",
+            body: "Learning AI is not about writing perfect instructions. It’s about describing intent, observing outcomes, and refining ideas. Game building makes this process obvious and engaging, rather than abstract and theoretical.",
+          },
+          {
+            number: "04",
+            title: "Familiar context, deeper understanding",
+            body: "Most students already understand games as systems with rules, logic, and outcomes. Using that familiar context lowers the barrier to learning and helps students focus on how the technology works, not on learning an entirely new domain.",
+          },
+        ],
+      },
+    },
+    {
+      key: "logos",
+      enabled: false,
       id: "logos",
       props: {
         title: "Trusted by teams at leading companies",

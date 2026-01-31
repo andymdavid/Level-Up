@@ -109,7 +109,7 @@ export function Hero({
               className="flex items-center gap-2"
             >
               {socialProofLogo && (
-                <div className="w-5 h-5 rounded border-[0.2px] border-neutral-700 bg-neutral-900 overflow-hidden flex items-center justify-center p-0.5">
+                <div className="w-5 h-5 rounded border-[0.1px] border-neutral-700 bg-neutral-900 overflow-hidden flex items-center justify-center p-[1px]">
                   <Image
                     src={socialProofLogo}
                     alt="Logo"
