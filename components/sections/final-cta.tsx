@@ -15,7 +15,7 @@ export function FinalCta({
   ctaSecondary,
 }: FinalCtaProps) {
   return (
-    <Section variant="muted">
+    <Section>
       <Container>
         <div className="text-center space-y-4">
           <h2 className="text-2xl font-bold">Final CTA (stub)</h2>

@@ -51,7 +51,7 @@ function LogoDisplay({ logo }: { logo: LogoItem }) {
 
 export function Logos({ title, subtitle, logos }: LogosProps) {
   return (
-    <Section variant="muted" className="py-12 sm:py-16">
+    <Section className="py-12 sm:py-16">
       <Container>
         <div className="flex flex-col items-center space-y-8">
           {/* Optional Header */}

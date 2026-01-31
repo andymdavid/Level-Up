@@ -34,13 +34,13 @@ export function Hero({
       : ctaPrimary;
 
   return (
-    <Section className="min-h-screen flex items-start justify-center pt-[18vh] pb-[35vh]">
+    <Section className="!py-0 min-h-screen flex items-center justify-center">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col items-center text-center space-y-6 max-w-5xl mx-auto"
+          className="flex flex-col items-center text-center space-y-6 max-w-5xl mx-auto -mt-[15vh]"
         >
           {/* Optional Badge */}
           {badge && (
@@ -98,7 +98,7 @@ export function Hero({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="text-sm text-muted-foreground"
+              className="text-xs text-muted-foreground"
             >
               {socialProof}
             </motion.p>

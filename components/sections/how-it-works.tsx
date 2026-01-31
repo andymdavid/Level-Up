@@ -44,7 +44,7 @@ export function HowItWorks({ title, subtitle, steps, note }: HowItWorksProps) {
   };
 
   return (
-    <Section variant="muted">
+    <Section>
       <Container>
         <div className="space-y-12">
           {/* Header */}
