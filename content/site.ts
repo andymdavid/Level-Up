@@ -91,9 +91,9 @@ export const siteContent: SiteContent = {
           { id: "8", title: "Card Game", description: "AI opponent with learning strategies", badge: "Advanced" },
         ],
         speed: 50,
-        arcDepth: 80,
-        overlapTop: "-200px",
-        overlapBottom: "-40px",
+        arcDepth: 60,
+        overlapTop: "-280px",
+        overlapBottom: "60px",
       },
     },
     {
