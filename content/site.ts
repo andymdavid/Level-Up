@@ -56,8 +56,8 @@ export const siteContent: SiteContent = {
           { label: "FAQ", href: "#faq" },
         ],
         cta: {
-          label: "Get Started",
-          href: "#pricing",
+          label: "Login",
+          href: "#",
         },
       },
     },

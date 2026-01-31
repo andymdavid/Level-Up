@@ -10,8 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Menu, X } from "lucide-react";
-import { siteContent } from "@/content/site";
+import { Menu } from "lucide-react";
 
 interface NavbarProps {
   links: Array<{ label: string; href: string }>;
@@ -22,86 +21,61 @@ interface NavbarProps {
 }
 
 export function Navbar({ links, cta }: NavbarProps) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLinkClick = () => {
-    setMobileMenuOpen(false);
+    setMenuOpen(false);
   };
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <Container>
-        <div className="flex h-16 items-center justify-between">
-          {/* Brand/Logo */}
-          <div className="flex items-center">
-            <a href="#" className="text-xl font-bold">
-              {siteContent.site.name}
-            </a>
-          </div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center">
-            <Button asChild>
-              <a href={cta.href}>{cta.label}</a>
-            </Button>
-          </div>
-
-          {/* Mobile Menu */}
-          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-            <SheetTrigger asChild className="md:hidden">
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="Open mobile menu"
-              >
+    <header className="fixed top-0 z-50 w-full pt-4">
+      <div className="flex justify-center px-4">
+        <nav className="flex items-center justify-between bg-black rounded-md p-2 w-full max-w-xl">
+          {/* Menu Trigger */}
+          <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+            <SheetTrigger asChild>
+              <button className="flex items-center gap-2 text-white hover:text-white/80 transition-colors">
                 <Menu className="h-5 w-5" />
-              </Button>
+                <span className="text-sm font-medium">Menu</span>
+              </button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+            <SheetContent side="left" className="w-[300px] sm:w-[400px] bg-black border-r-neutral-800">
               <SheetHeader>
-                <SheetTitle>{siteContent.site.name}</SheetTitle>
+                <SheetTitle className="text-white font-anton text-2xl">LEVEL-UP</SheetTitle>
               </SheetHeader>
               <div className="flex flex-col gap-4 mt-8">
-                {/* Mobile Navigation Links */}
                 <nav className="flex flex-col gap-2">
                   {links.map((link) => (
                     <a
                       key={link.href}
                       href={link.href}
                       onClick={handleLinkClick}
-                      className="block px-4 py-3 text-sm font-medium rounded-md transition-colors hover:bg-muted"
+                      className="block px-4 py-3 text-sm font-medium text-white rounded-md transition-colors hover:bg-neutral-800"
                     >
                       {link.label}
                     </a>
                   ))}
                 </nav>
-
-                {/* Mobile CTA */}
-                <div className="pt-4 border-t">
-                  <Button asChild className="w-full">
-                    <a href={cta.href} onClick={handleLinkClick}>
-                      {cta.label}
-                    </a>
-                  </Button>
-                </div>
               </div>
             </SheetContent>
           </Sheet>
-        </div>
-      </Container>
+
+          {/* Center Logo */}
+          <a href="#" className="absolute left-1/2 -translate-x-1/2 text-white font-anton text-3xl tracking-tight">
+            LEVEL-UP
+          </a>
+
+          {/* Login Button */}
+          <Button
+            asChild
+            size="sm"
+            variant="secondary"
+            className="bg-[#a1ff62] hover:bg-[#8fe650] text-black rounded-md px-5"
+          >
+            <a href={cta.href}>{cta.label}</a>
+          </Button>
+        </nav>
+      </div>
     </header>
   );
 }
