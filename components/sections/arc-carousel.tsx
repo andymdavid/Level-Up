@@ -86,7 +86,7 @@ export function ArcCarousel({
 
   // Double cards for seamless loop
   const displayCards = useMemo(() => [...cards, ...cards], [cards]);
-  const cardGap = 20;
+  const cardGap = 60;
   const totalWidth = displayCards.length * (dimensions.cardWidth + cardGap);
 
   // Animation loop
@@ -171,7 +171,7 @@ export function ArcCarousel({
             >
               <Card className="overflow-hidden bg-neutral-900 border-neutral-800 shadow-xl">
                 {card.image ? (
-                  <div className="relative aspect-[4/3]">
+                  <div className="relative aspect-[16/10]">
                     <Image
                       src={card.image}
                       alt={card.title}
@@ -185,7 +185,7 @@ export function ArcCarousel({
                     )}
                   </div>
                 ) : (
-                  <div className="relative aspect-[4/3] bg-gradient-to-br from-neutral-800 to-neutral-900 flex items-center justify-center">
+                  <div className="relative aspect-[16/10] bg-gradient-to-br from-neutral-800 to-neutral-900 flex items-center justify-center">
                     <span className="text-4xl">🎮</span>
                     {card.badge && (
                       <span className="absolute top-2 left-2 px-2 py-1 text-xs bg-[#a1ff62] text-black rounded font-medium">

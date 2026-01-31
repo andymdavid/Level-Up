@@ -34,7 +34,7 @@ export function Hero({
       : ctaPrimary;
 
   return (
-    <Section className="min-h-screen flex items-center justify-center">
+    <Section className="min-h-screen flex items-center justify-center pb-[25vh]">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
