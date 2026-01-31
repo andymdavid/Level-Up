@@ -12,6 +12,7 @@ export default {
   		fontFamily: {
   			sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
   			anton: ['var(--font-anton)', 'sans-serif'],
+  			jersey: ['var(--font-jersey)', 'sans-serif'],
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

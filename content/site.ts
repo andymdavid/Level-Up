@@ -67,12 +67,12 @@ export const siteContent: SiteContent = {
       id: "hero",
       variant: "default",
       props: {
-        badge: "🚀 New: AI-powered content generation",
-        title: "Build Landing Pages That Convert",
+        badge: "For schools interested in exploring applied AI",
+        title: "Where students learn AI by building games",
         subtitle:
-          "A content-driven template system for creating high-converting SaaS landing pages. Edit content, not code.",
+          "Level Up is a hands-on workshop where students learn how AI works in practice by building their very own game, gaining a practical understanding of how AI systems behave by actually using them.",
         ctaPrimary: { label: "Get Started", href: "#pricing" },
-        socialProof: "Trusted by 500+ developers and teams worldwide",
+        socialProof: "Designed by Other Stuff, drawing on real-world AI work with teams in Australia and Silicon Valley",
       },
     },
     {

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Anton } from "next/font/google";
+import { Inter, Anton, Jersey_10 } from "next/font/google";
 import "./globals.css";
 import { siteContent } from "@/content/site";
 
@@ -14,6 +14,12 @@ const anton = Anton({
   variable: "--font-anton",
 });
 
+const jersey = Jersey_10({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-jersey",
+});
+
 export const metadata: Metadata = {
   title: siteContent.page.title || siteContent.site.name,
   description: siteContent.page.description || siteContent.site.tagline,
@@ -26,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${anton.variable} font-sans`}>{children}</body>
+      <body className={`${inter.variable} ${anton.variable} ${jersey.variable} font-sans`}>{children}</body>
     </html>
   );
 }
