@@ -74,6 +74,7 @@ export const siteContent: SiteContent = {
           "Level Up is a hands-on workshop where students learn how AI works in practice by building their very own game, gaining a practical understanding of how AI systems behave by actually using them.",
         ctaPrimary: { label: "Get Started", href: "#pricing" },
         socialProof: "Designed by Other Stuff, drawing on real-world AI work with teams in Australia and Silicon Valley",
+        socialProofLogo: "/logo-other-stuff.png",
       },
     },
     {

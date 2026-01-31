@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 interface HeroProps {
   badge?: string;
@@ -18,6 +19,7 @@ interface HeroProps {
         href: string;
       };
   socialProof?: string;
+  socialProofLogo?: string;
 }
 
 export function Hero({
@@ -26,6 +28,7 @@ export function Hero({
   subtitle,
   ctaPrimary,
   socialProof,
+  socialProofLogo,
 }: HeroProps) {
   // Normalize CTA props to objects
   const primaryCta =
@@ -94,14 +97,27 @@ export function Hero({
 
           {/* Social Proof */}
           {socialProof && (
-            <motion.p
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="text-xs text-muted-foreground"
+              className="flex items-center gap-2"
             >
-              {socialProof}
-            </motion.p>
+              {socialProofLogo && (
+                <div className="w-5 h-5 rounded border border-neutral-300 bg-white overflow-hidden flex items-center justify-center">
+                  <Image
+                    src={socialProofLogo}
+                    alt="Logo"
+                    width={16}
+                    height={16}
+                    className="object-contain"
+                  />
+                </div>
+              )}
+              <p className="text-xs text-muted-foreground">
+                {socialProof}
+              </p>
+            </motion.div>
           )}
         </motion.div>
       </Container>
