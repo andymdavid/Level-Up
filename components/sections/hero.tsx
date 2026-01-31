@@ -40,7 +40,7 @@ export function Hero({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto"
+          className="flex flex-col items-center text-center space-y-6 max-w-5xl mx-auto"
         >
           {/* Optional Badge */}
           {badge && (
@@ -73,7 +73,7 @@ export function Hero({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-lg text-muted-foreground sm:text-xl max-w-2xl"
+            className="text-base text-[#201d1d] max-w-4xl"
           >
             {subtitle}
           </motion.p>

@@ -67,7 +67,7 @@ export const siteContent: SiteContent = {
       id: "hero",
       variant: "default",
       props: {
-        badge: "For schools interested in exploring applied AI",
+        badge: "🚀 For schools interested in exploring applied AI",
         title: "Where students learn AI by building games",
         subtitle:
           "Level Up is a hands-on workshop where students learn how AI works in practice by building their very own game, gaining a practical understanding of how AI systems behave by actually using them.",
