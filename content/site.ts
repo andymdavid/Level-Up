@@ -75,6 +75,7 @@ export const siteContent: SiteContent = {
         ctaPrimary: { label: "Get Started", href: "#pricing" },
         socialProof: "Designed by Other Stuff, drawing on real-world AI work with teams in Australia and Silicon Valley",
         socialProofLogo: "/logo-other-stuff.png",
+        socialProofLink: { text: "Other Stuff", href: "https://otherstuff.ai" },
       },
     },
     {

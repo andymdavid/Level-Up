@@ -13,6 +13,7 @@ export default {
   			sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
   			anton: ['var(--font-anton)', 'sans-serif'],
   			jersey: ['var(--font-jersey)', 'sans-serif'],
+  			bungee: ['var(--font-bungee)', 'sans-serif'],
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

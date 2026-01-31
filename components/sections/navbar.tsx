@@ -41,7 +41,7 @@ export function Navbar({ links, cta }: NavbarProps) {
             </SheetTrigger>
             <SheetContent side="left" className="w-[300px] sm:w-[400px] bg-black border-r-neutral-800">
               <SheetHeader>
-                <SheetTitle className="text-white font-anton text-2xl">LEVEL-UP</SheetTitle>
+                <SheetTitle className="text-white font-bungee text-2xl tracking-tight">LEVEL-UP</SheetTitle>
               </SheetHeader>
               <div className="flex flex-col gap-4 mt-8">
                 <nav className="flex flex-col gap-2">
@@ -61,7 +61,10 @@ export function Navbar({ links, cta }: NavbarProps) {
           </Sheet>
 
           {/* Center Logo */}
-          <a href="#" className="absolute left-1/2 -translate-x-1/2 text-white font-anton text-3xl tracking-tight">
+          <a
+            href="#"
+            className="absolute left-1/2 -translate-x-1/2 text-white font-bungee text-3xl tracking-tight"
+          >
             LEVEL-UP
           </a>
 

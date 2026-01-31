@@ -20,6 +20,10 @@ interface HeroProps {
       };
   socialProof?: string;
   socialProofLogo?: string;
+  socialProofLink?: {
+    text: string;
+    href: string;
+  };
 }
 
 export function Hero({
@@ -29,6 +33,7 @@ export function Hero({
   ctaPrimary,
   socialProof,
   socialProofLogo,
+  socialProofLink,
 }: HeroProps) {
   // Normalize CTA props to objects
   const primaryCta =
@@ -87,7 +92,7 @@ export function Hero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Button size="lg" asChild className="group">
+            <Button size="lg" asChild className="group hover:bg-[#a1ff62] hover:text-black">
               <a href={primaryCta.href}>
                 {primaryCta.label}
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -104,7 +109,7 @@ export function Hero({
               className="flex items-center gap-2"
             >
               {socialProofLogo && (
-                <div className="w-5 h-5 rounded border border-neutral-300 bg-white overflow-hidden flex items-center justify-center">
+                <div className="w-5 h-5 rounded border-[0.2px] border-neutral-700 bg-neutral-900 overflow-hidden flex items-center justify-center p-0.5">
                   <Image
                     src={socialProofLogo}
                     alt="Logo"
@@ -115,7 +120,23 @@ export function Hero({
                 </div>
               )}
               <p className="text-xs text-muted-foreground">
-                {socialProof}
+                {socialProofLink && socialProof
+                  ? socialProof.split(socialProofLink.text).map((part, i, arr) => (
+                      <span key={i}>
+                        {part}
+                        {i < arr.length - 1 && (
+                          <a
+                            href={socialProofLink.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline decoration-neutral-400/50 hover:decoration-neutral-400/70 transition-all"
+                          >
+                            {socialProofLink.text}
+                          </a>
+                        )}
+                      </span>
+                    ))
+                  : socialProof}
               </p>
             </motion.div>
           )}
