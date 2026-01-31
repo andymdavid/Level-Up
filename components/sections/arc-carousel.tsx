@@ -169,9 +169,9 @@ export function ArcCarousel({
                 zIndex: transform.zIndex,
               }}
             >
-              <Card className="overflow-hidden bg-neutral-900 border-neutral-800 shadow-xl">
+              <Card className="overflow-hidden bg-neutral-900 border-neutral-800 shadow-[0_8px_30px_rgba(0,0,0,0.12)] p-1.5">
                 {card.image ? (
-                  <div className="relative aspect-[16/10]">
+                  <div className="relative aspect-[16/10] rounded-lg overflow-hidden">
                     <Image
                       src={card.image}
                       alt={card.title}
@@ -185,7 +185,7 @@ export function ArcCarousel({
                     )}
                   </div>
                 ) : (
-                  <div className="relative aspect-[16/10] bg-gradient-to-br from-neutral-800 to-neutral-900 flex items-center justify-center">
+                  <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-900 flex items-center justify-center">
                     <span className="text-4xl">🎮</span>
                     {card.badge && (
                       <span className="absolute top-2 left-2 px-2 py-1 text-xs bg-[#a1ff62] text-black rounded font-medium">
@@ -194,7 +194,7 @@ export function ArcCarousel({
                     )}
                   </div>
                 )}
-                <CardContent className="p-4 bg-neutral-900">
+                <CardContent className="px-0 pt-2 pb-0 bg-neutral-900">
                   <h3 className="font-semibold text-sm text-white">{card.title}</h3>
                   {card.description && (
                     <p className="text-xs text-neutral-400 mt-1 line-clamp-2">
