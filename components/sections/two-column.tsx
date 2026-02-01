@@ -22,6 +22,12 @@ interface LevelUpCard {
 interface TwoColumnProps {
   title: string;
   body: string;
+  bodyLinks?: Array<{
+    text: string;
+    href: string;
+    newTab?: boolean;
+  }>;
+  profileLogo?: string;
   singleColumn?: boolean;
   fullHeight?: boolean;
   layout?: "default" | "split";
@@ -33,9 +39,10 @@ interface TwoColumnProps {
     body: string;
   }>;
   blocks?: Array<{
-    number: string;
+    number?: string;
     title: string;
     body: string;
+    role?: string;
     image?: string;
     imageAlt?: string;
     video?: string;
@@ -47,7 +54,7 @@ interface TwoColumnProps {
   }>;
   hideTitle?: boolean;
   bodyVariant?: "default" | "display";
-  blocksVariant?: "numbered" | "feature";
+  blocksVariant?: "numbered" | "feature" | "profile";
 }
 
 export function TwoColumn({
@@ -63,6 +70,8 @@ export function TwoColumn({
   blocks,
   levelUpCards,
   faqItems,
+  bodyLinks,
+  profileLogo,
   hideTitle = false,
   bodyVariant = "default",
   blocksVariant = "numbered",
@@ -73,6 +82,47 @@ export function TwoColumn({
     bodyVariant === "display"
       ? "mt-4 text-2xl sm:text-3xl md:text-4xl leading-snug text-[#201d1d] text-center"
       : `mt-8 text-sm md:text-base text-[#201d1d]${singleColumn ? " text-center mb-8" : " mb-8"}`;
+
+  const renderBody = () => {
+    if (!bodyLinks || bodyLinks.length === 0) {
+      return body;
+    }
+
+    let parts: React.ReactNode[] = [body];
+
+    bodyLinks.forEach((link, linkIndex) => {
+      const nextParts: React.ReactNode[] = [];
+      parts.forEach((part, partIndex) => {
+        if (typeof part !== "string") {
+          nextParts.push(part);
+          return;
+        }
+
+        const segments = part.split(link.text);
+        segments.forEach((segment, segmentIndex) => {
+          if (segment) {
+            nextParts.push(segment);
+          }
+          if (segmentIndex < segments.length - 1) {
+            nextParts.push(
+              <a
+                key={`body-link-${linkIndex}-${partIndex}-${segmentIndex}`}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-500"
+              >
+                {link.text}
+              </a>
+            );
+          }
+        });
+      });
+      parts = nextParts;
+    });
+
+    return parts;
+  };
 
   // Split layout: 50/50 with content left, image right
   if (layout === "split") {
@@ -90,7 +140,7 @@ export function TwoColumn({
               {title}
             </h2>
             <p className="mt-6 text-sm md:text-base text-[#201d1d]">
-              {body}
+              {renderBody()}
             </p>
 
             {/* Split blocks */}
@@ -162,7 +212,7 @@ export function TwoColumn({
                 : "md:columns-2 md:gap-10"
             }`}
           >
-            {body}
+            {renderBody()}
           </p>
           {faqItems && faqItems.length > 0 && (
             <div className="mt-10 max-w-3xl mx-auto">
@@ -203,7 +253,7 @@ export function TwoColumn({
             blocksVariant === "feature" ? (
               <div className="mt-10 pt-6 grid gap-x-10 gap-y-12 md:grid-cols-3">
                 {blocks.map((block) => (
-                  <div key={block.number} className="border-t border-neutral-300/70 pt-6">
+                  <div key={block.number ?? block.title} className="border-t border-neutral-300/70 pt-6">
                     <h3 className="text-base font-semibold text-[#201d1d]">
                       {block.title}
                     </h3>
@@ -234,12 +284,78 @@ export function TwoColumn({
                   </div>
                 ))}
               </div>
-            ) : (
-              <div className="mt-10 pt-6 grid gap-x-12 gap-y-12 md:grid-cols-2">
+            ) : blocksVariant === "profile" ? (
+              <div className="mt-10 pt-6 grid gap-8 md:grid-cols-2">
                 {blocks.map((block) => (
-                  <div key={block.number} className="border-t border-neutral-300/70 pt-8">
+                  <div key={block.number ?? block.title} className="border-t border-b border-neutral-300/70 py-8">
+                    <div className="grid gap-6 md:grid-cols-[240px_1fr] md:gap-10">
+                      <div className="flex items-start gap-4">
+                        {block.image ? (
+                          <div className="relative h-16 w-16 overflow-hidden rounded-full bg-neutral-200">
+                            <Image
+                              src={block.image}
+                              alt={block.imageAlt || block.title}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                        ) : (
+                          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-neutral-200 text-[11px] font-medium text-neutral-500">
+                            Photo
+                          </div>
+                        )}
+                      <div>
+                        <h3 className="font-anton text-2xl uppercase text-[#201d1d]">
+                          {block.title}
+                        </h3>
+                        {block.role || profileLogo ? (
+                          <div className="mt-2 flex items-center gap-2">
+                            {block.role ? (
+                              <span className="inline-flex px-2.5 py-1 text-xs font-semibold bg-[#a1ff62] text-black rounded uppercase tracking-wide">
+                                {block.role}
+                              </span>
+                            ) : null}
+                            {profileLogo ? (
+                              <a
+                                href="https://otherstuff.ai"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-5 h-5 rounded border-[0.1px] border-neutral-700 bg-neutral-900 overflow-hidden flex items-center justify-center p-[0.5px]"
+                                aria-label="Other Stuff"
+                              >
+                                <Image
+                                  src={profileLogo}
+                                  alt="Logo"
+                                  width={16}
+                                  height={16}
+                                  className="object-contain rounded-[3px]"
+                                />
+                              </a>
+                            ) : null}
+                          </div>
+                        ) : null}
+                      </div>
+                      </div>
+                      <p className="text-xs md:text-sm text-neutral-600 leading-relaxed">
+                        {block.body}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="mt-8 grid gap-x-12 gap-y-6 md:grid-cols-2">
+                {blocks.map((block, index) => (
+                  <div
+                    key={block.number ?? block.title}
+                    className={`border-t border-b border-neutral-300/70 py-6 ${
+                      index < 2 ? "md:border-t" : "md:border-t-0"
+                    }`}
+                  >
                     <div className="flex gap-6">
-                      <span className="text-sm text-neutral-500">{block.number}</span>
+                      {block.number ? (
+                        <span className="text-sm text-neutral-500 font-jersey">{block.number}</span>
+                      ) : null}
                       <div>
                         <h3 className="text-base font-semibold text-[#201d1d]">
                           {block.title}
@@ -268,7 +384,9 @@ export function TwoColumn({
                     >
                       {/* Top section */}
                       <div className="shrink-0">
-                        <span className="text-neutral-500 text-sm font-medium">{card.number}</span>
+                        <span className="text-neutral-500 text-sm font-medium font-jersey">
+                          {card.number}
+                        </span>
                         <h3 className="text-white text-xl font-semibold mt-3 leading-tight">{card.title}</h3>
                         <p className="text-neutral-400 text-xs mt-3 leading-relaxed">
                           {card.description}
@@ -299,7 +417,9 @@ export function TwoColumn({
                         {card.summaryItems.map((item, itemIndex) => (
                           <div key={item.number} className="flex-1 flex items-center border-b border-neutral-800 last:border-b-0">
                             <div className="flex items-baseline gap-3">
-                              <span className="text-[#a1ff62] text-xs font-medium shrink-0">{item.number}</span>
+                              <span className="text-[#a1ff62] text-xs font-medium font-jersey shrink-0">
+                                {item.number}
+                              </span>
                               <span className="text-white text-xs">{item.text}</span>
                             </div>
                           </div>
