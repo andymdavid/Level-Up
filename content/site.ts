@@ -275,6 +275,38 @@ export const siteContent: SiteContent = {
       },
     },
     {
+      key: "twoColumn",
+      enabled: true,
+      id: "twoColumn-6",
+      props: {
+        title: "Frequently Asked Questions",
+        body: "Here are answers to some of the common practical questions schools and teachers ask when considering Level Up.",
+        singleColumn: true,
+        faqItems: [
+          {
+            question: "What age range is Level Up designed for?",
+            answer: "Level Up is designed for junior to middle high school students. The workshop supports mixed abilities and does not require any prior coding or technical experience.",
+          },
+          {
+            question: "What do students need to participate?",
+            answer: "Students need access to a laptop or desktop computer and an internet connection. The workshop is designed to work with standard school devices and existing classroom setups.",
+          },
+          {
+            question: "How many students can take part in a session?",
+            answer: "Level Up works well with typical class sizes. We can adapt facilitation to suit different group sizes and classroom contexts.",
+          },
+          {
+            question: "What role do teachers play during the workshop?",
+            answer: "Teachers are welcome to take part alongside students, but are not expected to lead or have prior AI knowledge. The session is facilitated by our team from start to finish.",
+          },
+          {
+            question: "What happens after the workshop?",
+            answer: "Students leave with a playable game they've built and a practical understanding of how AI works. The workshop is designed to stand alone, while also giving students a strong foundation for future learning.",
+          },
+        ],
+      },
+    },
+    {
       key: "logos",
       enabled: false,
       id: "logos",
@@ -293,7 +325,7 @@ export const siteContent: SiteContent = {
     },
     {
       key: "benefits",
-      enabled: true,
+      enabled: false,
       id: "benefits",
       variant: "bento",
       props: {
@@ -349,7 +381,7 @@ export const siteContent: SiteContent = {
     },
     {
       key: "howItWorks",
-      enabled: true,
+      enabled: false,
       id: "howItWorks",
       props: {
         title: "Get started in minutes",
@@ -386,7 +418,7 @@ export const siteContent: SiteContent = {
     },
     {
       key: "pricing",
-      enabled: true,
+      enabled: false,
       id: "pricing",
       props: {
         title: "Simple, transparent pricing",
