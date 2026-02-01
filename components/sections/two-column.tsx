@@ -2,8 +2,17 @@
 
 import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
+import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Image from "next/image";
+
+interface LevelUpCard {
+  id: string;
+  title: string;
+  description?: string;
+  image?: string;
+  badge?: string;
+}
 
 interface TwoColumnProps {
   title: string;
@@ -18,6 +27,7 @@ interface TwoColumnProps {
     imageAlt?: string;
     video?: string;
   }>;
+  levelUpCards?: LevelUpCard[];
   hideTitle?: boolean;
   bodyVariant?: "default" | "display";
   blocksVariant?: "numbered" | "feature";
@@ -29,6 +39,7 @@ export function TwoColumn({
   singleColumn = false,
   fullHeight = false,
   blocks,
+  levelUpCards,
   hideTitle = false,
   bodyVariant = "default",
   blocksVariant = "numbered",
@@ -116,6 +127,60 @@ export function TwoColumn({
               </div>
             )
           ) : null}
+          {levelUpCards && levelUpCards.length > 0 && (
+            <div className="mt-12 -mx-8 md:-mx-16 lg:-mx-24">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 px-8 md:px-16 lg:px-24 items-end">
+                {levelUpCards.map((card, index) => {
+                  // Progressive step-up: cards are same height but offset vertically
+                  // First card (index 0) is lowest, last card is highest
+                  const stepOffset = index * 32;
+
+                  return (
+                    <Card
+                      key={card.id}
+                      className="overflow-hidden bg-neutral-900 border-neutral-800 shadow-[0_8px_30px_rgba(0,0,0,0.12)] p-1.5 h-[320px]"
+                      style={{ marginBottom: `${stepOffset}px` }}
+                    >
+                      <div className="flex flex-col h-full">
+                        {card.image ? (
+                          <div className="relative flex-1 min-h-0 rounded-lg overflow-hidden">
+                            <Image
+                              src={card.image}
+                              alt={card.title}
+                              fill
+                              className="object-cover"
+                            />
+                            {card.badge && (
+                              <span className="absolute top-2 left-2 px-2 py-1 text-xs bg-[#a1ff62] text-black rounded font-medium">
+                                {card.badge}
+                              </span>
+                            )}
+                          </div>
+                        ) : (
+                          <div className="relative flex-1 min-h-0 rounded-lg overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-900 flex items-center justify-center">
+                            <span className="text-4xl">🎮</span>
+                            {card.badge && (
+                              <span className="absolute top-2 left-2 px-2 py-1 text-xs bg-[#a1ff62] text-black rounded font-medium">
+                                {card.badge}
+                              </span>
+                            )}
+                          </div>
+                        )}
+                        <CardContent className="px-2 pt-3 pb-2 bg-neutral-900 shrink-0">
+                          <h3 className="font-semibold text-sm text-white">{card.title}</h3>
+                          {card.description && (
+                            <p className="text-xs text-neutral-400 mt-1">
+                              {card.description}
+                            </p>
+                          )}
+                        </CardContent>
+                      </div>
+                    </Card>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </motion.div>
       </Container>
     </Section>
