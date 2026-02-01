@@ -322,6 +322,7 @@ export const siteContent: SiteContent = {
           },
         ],
         profileLogo: "/logo-other-stuff.png",
+        fullHeight: true,
         blocksVariant: "profile",
         blocks: [
           {
