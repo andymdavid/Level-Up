@@ -2,8 +2,9 @@
 
 import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useState } from "react";
 
 interface LevelUpCard {
   id: string;
@@ -40,6 +41,10 @@ interface TwoColumnProps {
     video?: string;
   }>;
   levelUpCards?: LevelUpCard[];
+  faqItems?: Array<{
+    question: string;
+    answer: string;
+  }>;
   hideTitle?: boolean;
   bodyVariant?: "default" | "display";
   blocksVariant?: "numbered" | "feature";
@@ -57,10 +62,13 @@ export function TwoColumn({
   splitBlocks,
   blocks,
   levelUpCards,
+  faqItems,
   hideTitle = false,
   bodyVariant = "default",
   blocksVariant = "numbered",
 }: TwoColumnProps) {
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
   const bodyClassName =
     bodyVariant === "display"
       ? "mt-4 text-2xl sm:text-3xl md:text-4xl leading-snug text-[#201d1d] text-center"
@@ -156,6 +164,41 @@ export function TwoColumn({
           >
             {body}
           </p>
+          {faqItems && faqItems.length > 0 && (
+            <div className="mt-10 max-w-3xl mx-auto">
+              {faqItems.map((item, index) => (
+                <div key={index} className="border-t border-neutral-300">
+                  <button
+                    onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+                    className="w-full py-6 flex items-center justify-between text-left"
+                  >
+                    <h3 className="text-base font-semibold text-[#201d1d] pr-4">
+                      {item.question}
+                    </h3>
+                    <span className="text-2xl text-neutral-400 shrink-0">
+                      {openFaqIndex === index ? "×" : "+"}
+                    </span>
+                  </button>
+                  <AnimatePresence>
+                    {openFaqIndex === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="pb-6 text-sm md:text-base text-[#201d1d] leading-relaxed">
+                          {item.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+              <div className="border-t border-neutral-300" />
+            </div>
+          )}
           {blocks && blocks.length > 0 ? (
             blocksVariant === "feature" ? (
               <div className="mt-10 pt-6 grid gap-x-10 gap-y-12 md:grid-cols-3">
