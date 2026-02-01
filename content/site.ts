@@ -588,3 +588,36 @@ export const siteContent: SiteContent = {
     },
   ],
 };
+    {
+      key: "twoColumn",
+      enabled: true,
+      id: "twoColumn-7",
+      props: {
+        title: "Who we are",
+        body:
+          "Level Up is delivered by Other Stuff, a Perth-based team that works hands-on with AI systems in the real-world. Our work focuses on helping people understand how AI actually behaves by building and running things that are practical, not by talking about them in theory. We’ve also worked with Stakwork, a Silicon Valley AI company on agent-based systems, and that lived experience shapes how we teach, advise, and support others - always grounded in what works in practice, not just in theory. We’ve seen that confidence and understanding come fastest when people are able to build something themselves and observe how it works in practice. Level Up is an extension of that approach, adapted for schools. It brings the same build-first, practical way of learning AI into the classroom, designed to be accessible, supportive, and grounded in real experience.",
+        bodyLinks: [
+          {
+            text: "Other Stuff",
+            href: "https://otherstuff.ai",
+            newTab: true,
+          },
+        ],
+        profileLogo: "/logo-other-stuff.png",
+        blocksVariant: "profile",
+        blocks: [
+          {
+            title: "Pete Winn",
+            role: "Co-Founder",
+            image: "/Pete.png",
+            body: "Pete has a long track record in process redesign, deep tech and large enterprise and programme deployments from Rolls Royce to Rio Tinto.",
+          },
+          {
+            title: "Andy David",
+            role: "Co-Founder",
+            image: "/Andy.png",
+            body: "Andy's background is in venture design, management consulting and technology startups, including process improvement for enterprise and SMEs.",
+          },
+        ],
+      },
+    },
