@@ -142,7 +142,7 @@ export function TwoColumn({
                   return (
                     <div
                       key={card.id}
-                      className="rounded-2xl bg-[#2a2a2a] p-5 h-[380px] flex flex-col"
+                      className="rounded-2xl bg-[#2a2a2a] p-5 h-[380px] flex flex-col transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3),0_0_30px_rgba(161,255,98,0.1)]"
                       style={{ marginBottom: `${stepOffset}px` }}
                     >
                       {/* Top section */}
