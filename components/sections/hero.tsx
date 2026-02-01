@@ -93,7 +93,7 @@ export function Hero({
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <Button size="lg" asChild className="group hover:bg-[#a1ff62] hover:text-black">
-              <a href={primaryCta.href}>
+              <a href={primaryCta.href} target="_blank" rel="noopener noreferrer">
                 {primaryCta.label}
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
@@ -109,15 +109,21 @@ export function Hero({
               className="flex items-center gap-2"
             >
               {socialProofLogo && (
-                <div className="w-5 h-5 rounded border-[0.1px] border-neutral-700 bg-neutral-900 overflow-hidden flex items-center justify-center p-[1px]">
+                <a
+                  href="https://otherstuff.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-5 h-5 rounded border-[0.1px] border-neutral-700 bg-neutral-900 overflow-hidden flex items-center justify-center p-[1px]"
+                  aria-label="Other Stuff"
+                >
                   <Image
                     src={socialProofLogo}
                     alt="Logo"
                     width={16}
                     height={16}
-                    className="object-contain"
+                    className="object-contain rounded-[3px]"
                   />
-                </div>
+                </a>
               )}
               <p className="text-xs text-muted-foreground">
                 {socialProofLink && socialProof
