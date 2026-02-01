@@ -226,6 +226,55 @@ export const siteContent: SiteContent = {
       },
     },
     {
+      key: "twoColumn",
+      enabled: true,
+      id: "twoColumn-4",
+      props: {
+        layout: "split",
+        title: "What Students Walk Away With",
+        body: "By the end of the workshop, students have more than a finished game. They leave with a practical understanding of AI and the confidence that comes from having built something themselves.",
+        splitBlocks: [
+          {
+            title: "A practical understanding of how AI works",
+            body: "Students see how instructions, rules, and feedback shape behaviour. They learn through experimentation rather than abstract explanation.",
+          },
+          {
+            title: "Confidence to build and explore",
+            body: "Students leave knowing they can shape systems themselves. AI feels usable and approachable, not intimidating.",
+          },
+          {
+            title: "Something real to point to",
+            body: "Each student finishes with a playable game they've built. It becomes a reference for future learning and experimentation.",
+          },
+        ],
+      },
+    },
+    {
+      key: "twoColumn",
+      enabled: true,
+      id: "twoColumn-5",
+      props: {
+        layout: "split",
+        splitReverse: true,
+        title: "Support for Teachers and Schools",
+        body: "Level Up is designed to fit comfortably into real classroom environments, with facilitation and support built in from the start.",
+        splitBlocks: [
+          {
+            title: "Facilitated and supported delivery",
+            body: "The session is led step by step by our team. Teachers are supported throughout, not expected to lead.",
+          },
+          {
+            title: "No prior AI expertise required",
+            body: "Students and teachers can take part together. No technical background is needed to participate.",
+          },
+          {
+            title: "Designed for real classrooms",
+            body: "Works with mixed abilities and existing devices. Structured to be focused, practical, and manageable.",
+          },
+        ],
+      },
+    },
+    {
       key: "logos",
       enabled: false,
       id: "logos",
