@@ -75,7 +75,9 @@ export function Navbar({ links, cta }: NavbarProps) {
             variant="secondary"
             className="bg-[#a1ff62] hover:bg-[#8fe650] text-black rounded-md px-5"
           >
-            <a href={cta.href}>{cta.label}</a>
+            <a href={cta.href} target="_blank" rel="noopener noreferrer">
+              {cta.label}
+            </a>
           </Button>
         </nav>
       </div>
