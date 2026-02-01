@@ -170,9 +170,15 @@ export const siteContent: SiteContent = {
       id: "twoColumn-3",
       props: {
         title: "What happens in a Level Up workshop",
-        body: "Each session is designed to get students building quickly, with clear guidance at the start and increasing independence as they go. Students learn by making changes, testing ideas, and seeing the results immediately in the game they’re building.",
+        body: "Each session is designed to get students building quickly, with clear guidance at the start and increasing independence as they go. Students learn by making changes, testing ideas, and seeing the results immediately in the game they're building.",
         singleColumn: true,
         fullHeight: true,
+        levelUpCards: [
+          { id: "1", title: "Setup and Start Building", description: "Students are introduced to the tools and the goal for the session. Everyone gets a working game on screen early, so momentum starts fast." },
+          { id: "2", title: "Shape the Game with AI", description: "Students use AI to add rules, mechanics, characters, and interactions. Ideas are turned directly into behaviour they can see and test." },
+          { id: "3", title: "Test, Tweak, and Improve", description: "Students play what they've built and adjust what doesn't feel right. This is where the learning lands as students see how instructions translate into outcomes." },
+          { id: "4", title: "End with a Real Game", description: "Students end with a playable game they can run and share. The session closes by reflecting on how the system works and what they built." },
+        ],
       },
     },
     {
