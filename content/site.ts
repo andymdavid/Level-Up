@@ -165,6 +165,17 @@ export const siteContent: SiteContent = {
       },
     },
     {
+      key: "twoColumn",
+      enabled: true,
+      id: "twoColumn-3",
+      props: {
+        title: "What happens in a Level Up workshop",
+        body: "Each session is designed to get students building quickly, with clear guidance at the start and increasing independence as they go. Students learn by making changes, testing ideas, and seeing the results immediately in the game they’re building.",
+        singleColumn: true,
+        fullHeight: true,
+      },
+    },
+    {
       key: "logos",
       enabled: false,
       id: "logos",

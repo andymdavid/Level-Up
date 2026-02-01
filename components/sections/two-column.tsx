@@ -9,7 +9,7 @@ interface TwoColumnProps {
   title: string;
   body: string;
   singleColumn?: boolean;
-  minHeightClass?: string;
+  fullHeight?: boolean;
   blocks?: Array<{
     number: string;
     title: string;
@@ -27,7 +27,7 @@ export function TwoColumn({
   title,
   body,
   singleColumn = false,
-  minHeightClass = "min-h-[75vh]",
+  fullHeight = false,
   blocks,
   hideTitle = false,
   bodyVariant = "default",
@@ -39,7 +39,7 @@ export function TwoColumn({
       : `mt-8 text-sm md:text-base text-[#201d1d]${singleColumn ? " text-center mb-8" : " mb-8"}`;
 
   return (
-    <Section className={`${minHeightClass} flex items-center`}>
+    <Section className={`${fullHeight ? "min-h-screen" : "min-h-[75vh]"} flex items-center`}>
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
