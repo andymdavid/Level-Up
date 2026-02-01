@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Anton, Jersey_10, Bungee } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { siteContent } from "@/content/site";
 
@@ -26,6 +27,11 @@ const bungee = Bungee({
   variable: "--font-bungee",
 });
 
+const alfabet = localFont({
+  src: "../public/Alfabet_Black.otf",
+  variable: "--font-alfabet",
+});
+
 export const metadata: Metadata = {
   title: siteContent.page.title || siteContent.site.name,
   description: siteContent.page.description || siteContent.site.tagline,
@@ -38,7 +44,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${anton.variable} ${jersey.variable} ${bungee.variable} font-sans`}>
+      <body
+        className={`${inter.variable} ${anton.variable} ${jersey.variable} ${bungee.variable} ${alfabet.variable} font-sans`}
+      >
         {children}
       </body>
     </html>

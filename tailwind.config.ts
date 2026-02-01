@@ -8,12 +8,16 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-  	extend: {
-  		fontFamily: {
-  			sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-  			anton: ['var(--font-anton)', 'sans-serif'],
-  			jersey: ['var(--font-jersey)', 'sans-serif'],
-  			bungee: ['var(--font-bungee)', 'sans-serif'],
+  		extend: {
+  			fontFamily: {
+  				sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+  				anton: ['var(--font-anton)', 'sans-serif'],
+  				jersey: ['var(--font-jersey)', 'sans-serif'],
+  				bungee: ['var(--font-bungee)', 'sans-serif'],
+  				alfabet: ['var(--font-alfabet)', 'sans-serif'],
+  			},
+  		animation: {
+  			'spin-slow': 'spin 20s linear infinite',
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

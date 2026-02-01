@@ -572,11 +572,9 @@ export const siteContent: SiteContent = {
       enabled: true,
       id: "finalCta",
       props: {
-        title: "Ready to get started?",
-        subtitle:
-          "Join thousands of teams building better landing pages with our template",
-        ctaPrimary: "Start Building",
-        ctaSecondary: "View Documentation",
+        title: "Let’s talk about bringing Level-Up to your school",
+        ctaPrimary: "Get Started",
+        ctaSecondary: "Mail ons direct",
       },
     },
     {
@@ -584,39 +582,21 @@ export const siteContent: SiteContent = {
       enabled: true,
       id: "footer",
       props: {
-        logo: "Landing Template Starter",
-        tagline: "Build high-converting landing pages with ease",
-        links: [
-          {
-            title: "Product",
-            items: [
-              { label: "Features", href: "#benefits" },
-              { label: "Pricing", href: "#pricing" },
-              { label: "FAQ", href: "#faq" },
-            ],
-          },
-          {
-            title: "Resources",
-            items: [
-              { label: "Documentation", href: "/docs" },
-              { label: "Blog", href: "/blog" },
-              { label: "Support", href: "/support" },
-            ],
-          },
-          {
-            title: "Company",
-            items: [
-              { label: "About", href: "/about" },
-              { label: "Contact", href: "/contact" },
-              { label: "Privacy", href: "/privacy" },
-            ],
-          },
-        ],
+        logo: "Level-Up",
+        logoText: "LEVEL-UP",
+        links: [],
         social: [
-          { platform: "Twitter", href: "https://twitter.com" },
-          { platform: "GitHub", href: "https://github.com" },
-          { platform: "LinkedIn", href: "https://linkedin.com" },
+          { platform: "LinkedIn", href: "https://www.linkedin.com/company/otherstuffvs/" },
+          { platform: "YouTube", href: "https://www.youtube.com/@OtherStuffAI" },
         ],
+        contact: {
+          email: "info@otherstuff.studio",
+          address: [
+            "Other Stuff Pty Ltd",
+            "ABN 20 682 110 970",
+            "City Beach WA 6015",
+          ],
+        },
       },
     },
   ],
