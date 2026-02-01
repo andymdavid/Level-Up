@@ -27,6 +27,8 @@ interface TwoColumnProps {
     href: string;
     newTab?: boolean;
   }>;
+  bodyMobileSplitOn?: string;
+  bodyMobileSplitParas?: string[];
   profileLogo?: string;
   singleColumn?: boolean;
   fullHeight?: boolean;
@@ -34,6 +36,7 @@ interface TwoColumnProps {
   splitReverse?: boolean;
   splitImage?: string;
   splitImageAlt?: string;
+  splitVideo?: string;
   splitBlocks?: Array<{
     title: string;
     body: string;
@@ -66,11 +69,14 @@ export function TwoColumn({
   splitReverse = false,
   splitImage,
   splitImageAlt,
+  splitVideo,
   splitBlocks,
   blocks,
   levelUpCards,
   faqItems,
   bodyLinks,
+  bodyMobileSplitOn,
+  bodyMobileSplitParas,
   profileLogo,
   hideTitle = false,
   bodyVariant = "default",
@@ -124,6 +130,74 @@ export function TwoColumn({
     return parts;
   };
 
+  const renderMobileParagraphs = (text: string, splitOn: string) => {
+    const splitIndex = text.indexOf(splitOn);
+    if (splitIndex === -1) {
+      return <p className="md:hidden mt-6 text-sm md:text-base text-[#201d1d]">{text}</p>;
+    }
+
+    const first = text.slice(0, splitIndex).trim();
+    const second = text.slice(splitIndex).trim();
+
+    return (
+      <div className="md:hidden mt-6 space-y-4 text-sm md:text-base text-[#201d1d]">
+        <p>{first}</p>
+        <p>{second}</p>
+      </div>
+    );
+  };
+
+  const renderDefaultBody = (className: string) => {
+    if (bodyMobileSplitParas && bodyMobileSplitParas.length > 0) {
+      const text = body;
+      const sortedSplits = [...bodyMobileSplitParas].sort(
+        (a, b) => text.indexOf(a) - text.indexOf(b)
+      );
+      const indices = sortedSplits
+        .map((marker) => ({ marker, index: text.indexOf(marker) }))
+        .filter((item) => item.index !== -1)
+        .sort((a, b) => a.index - b.index);
+
+      if (indices.length > 0) {
+        const parts: string[] = [];
+        let start = 0;
+        indices.forEach((item) => {
+          const segment = text.slice(start, item.index).trim();
+          if (segment) {
+            parts.push(segment);
+          }
+          start = item.index;
+        });
+        const last = text.slice(start).trim();
+        if (last) {
+          parts.push(last);
+        }
+
+        return (
+          <>
+            <div className="md:hidden mt-6 space-y-4 text-sm md:text-base text-[#201d1d]">
+              {parts.map((part, index) => (
+                <p key={index}>{part}</p>
+              ))}
+            </div>
+            <p className={`hidden md:block ${className}`}>{renderBody()}</p>
+          </>
+        );
+      }
+    }
+
+    if (bodyMobileSplitOn) {
+      return (
+        <>
+          {renderMobileParagraphs(body, bodyMobileSplitOn)}
+          <p className={`hidden md:block ${className}`}>{renderBody()}</p>
+        </>
+      );
+    }
+
+    return <p className={className}>{renderBody()}</p>;
+  };
+
   // Split layout: 50/50 with content left, image right
   if (layout === "split") {
     return (
@@ -139,7 +213,8 @@ export function TwoColumn({
             <h2 className="font-anton text-[40px] tracking-tight uppercase">
               {title}
             </h2>
-            <p className="mt-6 text-sm md:text-base text-[#201d1d]">
+            {renderMobileParagraphs(body, "The workshop is facilitated")}
+            <p className="hidden md:block mt-6 text-sm md:text-base text-[#201d1d]">
               {renderBody()}
             </p>
 
@@ -169,8 +244,18 @@ export function TwoColumn({
             transition={{ duration: 0.5, delay: 0.1 }}
             className={`flex items-center p-8 md:p-12 lg:p-16 ${splitReverse ? "md:order-1" : "md:order-2"}`}
           >
-            <div className="relative w-full aspect-square bg-neutral-300 rounded-2xl overflow-hidden">
-              {splitImage ? (
+            <div className="relative w-full aspect-[4/3] bg-neutral-300 rounded-2xl overflow-hidden">
+              {splitVideo ? (
+                <video
+                  className="h-full w-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                >
+                  <source src={splitVideo} type="video/mp4" />
+                </video>
+              ) : splitImage ? (
                 <Image
                   src={splitImage}
                   alt={splitImageAlt || title}
@@ -203,17 +288,15 @@ export function TwoColumn({
               {title}
             </h2>
           ) : null}
-          <p
-            className={`${bodyClassName} ${
+          {renderDefaultBody(
+            `${bodyClassName} ${
               singleColumn
                 ? bodyVariant === "display"
                   ? "max-w-3xl mx-auto"
                   : "max-w-[40rem] mx-auto"
                 : "md:columns-2 md:gap-10"
-            }`}
-          >
-            {renderBody()}
-          </p>
+            }`
+          )}
           {faqItems && faqItems.length > 0 && (
             <div className="mt-10 max-w-3xl mx-auto">
               {faqItems.map((item, index) => (
@@ -286,8 +369,13 @@ export function TwoColumn({
               </div>
             ) : blocksVariant === "profile" ? (
               <div className="mt-10 pt-6 grid gap-8 md:grid-cols-2">
-                {blocks.map((block) => (
-                  <div key={block.number ?? block.title} className="border-t border-b border-neutral-300/70 py-8">
+                {blocks.map((block, index) => (
+                  <div
+                    key={block.number ?? block.title}
+                    className={`border-t border-neutral-300/70 py-8 last:border-b md:border-b ${
+                      index < 2 ? "md:border-t" : "md:border-t-0"
+                    }`}
+                  >
                     <div className="grid gap-6 md:grid-cols-[240px_1fr] md:gap-10">
                       <div className="flex items-start gap-4">
                         {block.image ? (
@@ -336,7 +424,7 @@ export function TwoColumn({
                         ) : null}
                       </div>
                       </div>
-                      <p className="text-xs md:text-sm text-neutral-600 leading-relaxed">
+                      <p className="text-sm md:text-sm text-neutral-600 leading-relaxed">
                         {block.body}
                       </p>
                     </div>
@@ -348,7 +436,7 @@ export function TwoColumn({
                 {blocks.map((block, index) => (
                   <div
                     key={block.number ?? block.title}
-                    className={`border-t border-b border-neutral-300/70 py-6 ${
+                    className={`border-t border-neutral-300/70 py-6 last:border-b md:border-b ${
                       index < 2 ? "md:border-t" : "md:border-t-0"
                     }`}
                   >
@@ -369,17 +457,16 @@ export function TwoColumn({
             )
           ) : null}
           {levelUpCards && levelUpCards.length > 0 && (
-            <div className="mt-10 relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen px-8 md:px-16 lg:px-24">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 max-w-7xl mx-auto items-end">
+            <div className="mt-10 relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen px-4 sm:px-6 md:px-16 lg:px-24">
+              <div className="flex gap-4 overflow-x-auto pb-4 md:pb-0 md:overflow-visible md:grid md:grid-cols-4 md:gap-5 max-w-7xl mx-auto items-end md:items-end">
                 {levelUpCards.map((card, index) => {
                   // Progressive step-up: cards are same height but offset vertically
-                  // First card (index 0) is lowest, last card is highest
                   const stepOffset = index * 32;
 
                   return (
                     <div
                       key={card.id}
-                      className="rounded-2xl bg-[#2a2a2a] p-5 h-[380px] flex flex-col transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3),0_0_30px_rgba(161,255,98,0.1)]"
+                      className="rounded-2xl bg-[#2a2a2a] p-5 h-[420px] w-[260px] sm:w-[280px] flex-shrink-0 md:flex-shrink md:w-auto flex flex-col transition-all duration-300 ease-out md:hover:-translate-y-1.5 md:hover:shadow-[0_20px_40px_rgba(0,0,0,0.3),0_0_30px_rgba(161,255,98,0.1)]"
                       style={{ marginBottom: `${stepOffset}px` }}
                     >
                       {/* Top section */}

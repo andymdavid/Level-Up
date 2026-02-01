@@ -46,41 +46,40 @@ export function Footer({ logo, logoText, links, social, contact, privacyLink }: 
   const navItems = links.flatMap((group) => group.items).slice(0, 4);
 
   return (
-    <footer className="relative overflow-hidden bg-[#2a2a2a] min-h-[300px]">
+    <footer className="relative overflow-hidden bg-[#2a2a2a] min-h-[400px] sm:min-h-[300px]">
       {/* Curved background shape */}
-      <div className="absolute bottom-0 left-4 right-4 sm:left-10 sm:right-10 h-64 sm:h-72">
-        <div className="h-full w-full overflow-hidden rounded-t-[28px] bg-[#1a1a1a]">
+      <div className="absolute bottom-0 left-4 right-4 sm:left-10 sm:right-10 h-96 sm:h-72">
+        <div className="relative h-full w-full overflow-hidden rounded-t-[28px] bg-[#1a1a1a]">
           <div className="h-full w-full bg-[#1a1a1a] [clip-path:polygon(0_70%,100%_15%,100%_100%,0_100%)]" />
+          {/* Other Stuff logo + label */}
+          <div className="absolute top-6 left-6 sm:left-8 md:left-10 flex items-center gap-3 text-white">
+            <Image
+              src="/OS-Logo-Icon.png"
+              alt="Other Stuff logo"
+              width={36}
+              height={36}
+              className="h-9 w-9"
+            />
+            <span className="font-alfabet text-[18px] sm:text-[20px] leading-none">
+              Other Stuff
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Other Stuff logo + label */}
-      <div className="absolute top-12 left-2 sm:left-10 md:left-14 z-20 flex items-center gap-3 text-white">
-        <Image
-          src="/OS-Logo-Icon.png"
-          alt="Other Stuff logo"
-          width={36}
-          height={36}
-          className="h-9 w-9"
-        />
-        <span className="font-alfabet text-[18px] sm:text-[20px] leading-none">
-          Other Stuff
-        </span>
-      </div>
-
       {/* Large GETHYPED logo on the left */}
-      <div className="absolute bottom-0 left-0 sm:left-8 md:left-12 z-10">
-        <div className="font-bungee text-[80px] sm:text-[100px] md:text-[140px] lg:text-[180px] leading-none text-white tracking-tighter translate-y-[15%]">
+      <div className="absolute bottom-4 left-6 sm:left-8 md:left-12 z-10">
+        <div className="font-bungee text-[54px] sm:text-[100px] md:text-[140px] lg:text-[180px] leading-none text-white tracking-tighter translate-y-[15%]">
           {logoText || logo}
         </div>
       </div>
 
       <Container>
-        <div className="relative z-10 pt-6 pb-6 min-h-[300px] flex flex-col justify-end">
+        <div className="relative z-10 pt-12 pb-24 min-h-[400px] sm:min-h-[300px] flex flex-col justify-start md:justify-end md:pt-6 md:pb-6 px-4 sm:px-0">
           {/* Main content - right aligned */}
-          <div className="flex flex-col items-end gap-6 min-h-[220px] justify-end">
+          <div className="flex flex-col items-start md:items-end gap-6 text-left md:text-right pl-2 sm:pl-0">
             {/* Navigation and Contact Row */}
-            <div className="flex flex-col md:flex-row items-end gap-8 md:gap-12">
+            <div className="flex flex-col md:flex-row items-start md:items-end gap-8 md:gap-12 md:justify-end">
               {/* Navigation pills */}
               <div className="flex flex-wrap items-center justify-end gap-2">
                 {navItems.map((item) => (
@@ -96,7 +95,7 @@ export function Footer({ logo, logoText, links, social, contact, privacyLink }: 
 
               {/* Contact info */}
               {contact && (
-                <div className="text-right text-sm text-white/80">
+                <div className="text-left md:text-right text-sm text-white/80">
                   <div className="font-semibold mb-1 text-white">Contact</div>
                   {contact.email && <div>{contact.email}</div>}
                   {contact.phone && <div>{contact.phone}</div>}
@@ -113,7 +112,7 @@ export function Footer({ logo, logoText, links, social, contact, privacyLink }: 
 
             {/* Social icons */}
             {social.length > 0 && (
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-start md:justify-end gap-3">
                 <span className="text-xs font-semibold text-white/80">
                   Follow us
                 </span>
@@ -137,7 +136,7 @@ export function Footer({ logo, logoText, links, social, contact, privacyLink }: 
           </div>
 
           {/* Bottom row - copyright and privacy */}
-          <div className="mt-8 flex items-end justify-end gap-4 pb-0">
+          <div className="mt-6 md:mt-8 flex items-end justify-start md:justify-end gap-4 pb-0">
             {privacyLink && (
               <a
                 href={privacyLink.href}

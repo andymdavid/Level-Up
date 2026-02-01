@@ -107,6 +107,7 @@ export const siteContent: SiteContent = {
         title: "What is Level-Up?",
         body:
           "Level Up is a guided, hands-on workshop designed for school students to learn how AI works by actually using it. During the session, students build their own games with AI coding agents, experimenting, iterating, and seeing how instructions turn into behaviour on screen. The workshop is facilitated step by step in a classroom setting, with students working through the process together alongside their teachers and making progress as they go. Level Up is designed to fit naturally into real school environments, focusing on practical experience and understanding of AI, rather than abstract explanation.",
+        bodyMobileSplitOn: "The workshop is facilitated",
         blocksVariant: "feature",
         minHeightClass: "min-h-[90vh]",
         blocks: [
@@ -233,6 +234,7 @@ export const siteContent: SiteContent = {
         layout: "split",
         title: "What Students Walk Away With",
         body: "By the end of the workshop, students have more than a finished game. They leave with a practical understanding of AI and the confidence that comes from having built something themselves.",
+        splitVideo: "/SatsGarden.mp4",
         splitBlocks: [
           {
             title: "A practical understanding of how AI works",
@@ -258,6 +260,7 @@ export const siteContent: SiteContent = {
         splitReverse: true,
         title: "Support for Teachers and Schools",
         body: "Level Up is designed to fit comfortably into real classroom environments, with facilitation and support built in from the start.",
+        splitVideo: "/SkiSats.mp4",
         splitBlocks: [
           {
             title: "Facilitated and supported delivery",
@@ -314,6 +317,11 @@ export const siteContent: SiteContent = {
         title: "Who we are",
         body:
           "Level Up is delivered by Other Stuff, a Perth-based team that works hands-on with AI systems in the real-world. Our work focuses on helping people understand how AI actually behaves by building and running things that are practical, not by talking about them in theory. We’ve also worked with Stakwork, a Silicon Valley AI company on agent-based systems, and that lived experience shapes how we teach, advise, and support others - always grounded in what works in practice, not just in theory. We’ve seen that confidence and understanding come fastest when people are able to build something themselves and observe how it works in practice. Level Up is an extension of that approach, adapted for schools. It brings the same build-first, practical way of learning AI into the classroom, designed to be accessible, supportive, and grounded in real experience.",
+        bodyMobileSplitParas: [
+          "We’ve also worked with Stakwork",
+          "We’ve seen that confidence",
+          "Level Up is an extension",
+        ],
         bodyLinks: [
           {
             text: "Other Stuff",
