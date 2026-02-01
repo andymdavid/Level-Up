@@ -23,6 +23,14 @@ interface TwoColumnProps {
   body: string;
   singleColumn?: boolean;
   fullHeight?: boolean;
+  layout?: "default" | "split";
+  splitReverse?: boolean;
+  splitImage?: string;
+  splitImageAlt?: string;
+  splitBlocks?: Array<{
+    title: string;
+    body: string;
+  }>;
   blocks?: Array<{
     number: string;
     title: string;
@@ -42,6 +50,11 @@ export function TwoColumn({
   body,
   singleColumn = false,
   fullHeight = false,
+  layout = "default",
+  splitReverse = false,
+  splitImage,
+  splitImageAlt,
+  splitBlocks,
   blocks,
   levelUpCards,
   hideTitle = false,
@@ -52,6 +65,71 @@ export function TwoColumn({
     bodyVariant === "display"
       ? "mt-4 text-2xl sm:text-3xl md:text-4xl leading-snug text-[#201d1d] text-center"
       : `mt-8 text-sm md:text-base text-[#201d1d]${singleColumn ? " text-center mb-8" : " mb-8"}`;
+
+  // Split layout: 50/50 with content left, image right
+  if (layout === "split") {
+    return (
+      <Section className="min-h-[75vh]">
+        <div className="grid md:grid-cols-2 min-h-[75vh]">
+          {/* Content column */}
+          <motion.div
+            initial={{ opacity: 0, x: splitReverse ? 20 : -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={`flex flex-col justify-center px-8 md:px-16 lg:px-24 py-16 ${splitReverse ? "md:order-2" : "md:order-1"}`}
+          >
+            <h2 className="font-anton text-[40px] tracking-tight uppercase">
+              {title}
+            </h2>
+            <p className="mt-6 text-sm md:text-base text-[#201d1d]">
+              {body}
+            </p>
+
+            {/* Split blocks */}
+            {splitBlocks && splitBlocks.length > 0 && (
+              <div className="mt-10">
+                {splitBlocks.map((block, index) => (
+                  <div key={index} className="border-t border-neutral-300 pt-6 pb-8">
+                    <div className="grid md:grid-cols-2 gap-4 md:gap-8">
+                      <h3 className="text-base font-semibold text-[#201d1d]">
+                        {block.title}
+                      </h3>
+                      <p className="text-sm text-neutral-600">
+                        {block.body}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </motion.div>
+
+          {/* Image column */}
+          <motion.div
+            initial={{ opacity: 0, x: splitReverse ? -20 : 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className={`flex items-center p-8 md:p-12 lg:p-16 ${splitReverse ? "md:order-1" : "md:order-2"}`}
+          >
+            <div className="relative w-full aspect-square bg-neutral-300 rounded-2xl overflow-hidden">
+              {splitImage ? (
+                <Image
+                  src={splitImage}
+                  alt={splitImageAlt || title}
+                  fill
+                  className="object-cover"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-neutral-500 text-sm">Image placeholder</span>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        </div>
+      </Section>
+    );
+  }
 
   return (
     <Section className={`${fullHeight ? "min-h-screen" : "min-h-[75vh]"} flex items-center`}>
