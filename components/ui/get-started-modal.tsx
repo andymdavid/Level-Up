@@ -9,10 +9,14 @@ interface GetStartedModalProps {
 
 export function GetStartedModal({ open, onClose }: GetStartedModalProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!open) {
       setSubmitted(false);
+      setSubmitting(false);
+      setError(null);
     }
   }, [open]);
 
@@ -56,9 +60,40 @@ export function GetStartedModal({ open, onClose }: GetStartedModalProps) {
           ) : (
             <form
               className="mt-8 space-y-4"
-              onSubmit={(event) => {
+              onSubmit={async (event) => {
                 event.preventDefault();
-                setSubmitted(true);
+                setSubmitting(true);
+                setError(null);
+
+                const form = event.currentTarget;
+                const formData = new FormData(form);
+                const payload = {
+                  name: formData.get("name"),
+                  organisation: formData.get("organisation"),
+                  role: formData.get("role"),
+                  email: formData.get("email"),
+                  inquiry: formData.get("inquiry"),
+                };
+
+                try {
+                  const response = await fetch("/api/contact", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                  });
+
+                  if (!response.ok) {
+                    const data = await response.json().catch(() => ({}));
+                    throw new Error(data.error || "Something went wrong.");
+                  }
+
+                  setSubmitted(true);
+                  form.reset();
+                } catch (err) {
+                  setError(err instanceof Error ? err.message : "Something went wrong.");
+                } finally {
+                  setSubmitting(false);
+                }
               }}
             >
               <div className="space-y-2">
@@ -132,11 +167,15 @@ export function GetStartedModal({ open, onClose }: GetStartedModalProps) {
                   </svg>
                 </div>
               </div>
+              {error ? (
+                <p className="text-xs text-red-300">{error}</p>
+              ) : null}
               <button
                 type="submit"
-                className="mt-2 inline-flex w-full items-center justify-center rounded-xl bg-[#a1ff62] px-4 py-3 text-sm font-semibold text-black hover:bg-[#b5ff7e] transition-colors"
+                className="mt-2 inline-flex w-full items-center justify-center rounded-xl bg-[#a1ff62] px-4 py-3 text-sm font-semibold text-black hover:bg-[#b5ff7e] transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+                disabled={submitting}
               >
-                Get in touch
+                {submitting ? "Sending..." : "Get in touch"}
               </button>
             </form>
           )}
