@@ -97,15 +97,35 @@ export function Footer({ logo, logoText, links, social, contact, privacyLink }: 
               {contact && (
                 <div className="text-left md:text-right text-sm text-white/80">
                   <div className="font-semibold mb-1 text-white">Contact</div>
-                  {contact.email && <div>{contact.email}</div>}
+                  {contact.email && (
+                    <a
+                      href={`mailto:${contact.email}`}
+                      className="hover:text-white transition-colors"
+                    >
+                      {contact.email}
+                    </a>
+                  )}
                   {contact.phone && <div>{contact.phone}</div>}
                   {contact.address && contact.address.length > 0 && (
                     <>
-                  {contact.address.map((line, i) => (
-                    <div key={i}>{line}</div>
-                  ))}
-                </>
-              )}
+                      {contact.address.map((line, i) => (
+                        <div key={i}>
+                          {i === 0 ? (
+                            <a
+                              href="https://otherstuff.ai"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hover:text-white transition-colors"
+                            >
+                              {line}
+                            </a>
+                          ) : (
+                            line
+                          )}
+                        </div>
+                      ))}
+                    </>
+                  )}
                 </div>
               )}
             </div>

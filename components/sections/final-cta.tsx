@@ -9,11 +9,13 @@ interface FinalCtaProps {
   subtitle?: string;
   ctaPrimary: string;
   ctaSecondary: string;
+  onGetStarted?: () => void;
 }
 
 export function FinalCta({
   title,
   ctaPrimary,
+  onGetStarted,
 }: FinalCtaProps) {
   const titleParts = title.split(" bringing ");
   const lineOne = titleParts.length > 1 ? `${titleParts[0]} bringing` : title;
@@ -23,7 +25,7 @@ export function FinalCta({
     <Section className="bg-[#2a2a2a] py-20 sm:py-28 md:py-36 relative overflow-hidden">
       <Container>
         <div className="text-center space-y-8">
-          <h2 className="max-w-3xl mx-auto font-anton text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase font-bold tracking-tight text-white">
+          <h2 className="max-w-3xl mx-auto font-anton text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase font-bold tracking-tight leading-tight text-white">
             <span className="block">{lineOne}</span>
             {lineTwo ? <span className="block">{lineTwo}</span> : null}
           </h2>
@@ -31,6 +33,8 @@ export function FinalCta({
             <Button
               size="lg"
               className="group bg-[#a1ff62] text-black hover:bg-[#201d1d] hover:text-white"
+              onClick={onGetStarted}
+              type="button"
             >
               {ctaPrimary}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />

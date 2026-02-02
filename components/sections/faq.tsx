@@ -2,6 +2,7 @@ import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
 
 interface FaqProps {
+  id?: string;
   title: string;
   subtitle: string;
   faqs: Array<{
@@ -10,9 +11,9 @@ interface FaqProps {
   }>;
 }
 
-export function Faq({ title, subtitle, faqs }: FaqProps) {
+export function Faq({ id, title, subtitle, faqs }: FaqProps) {
   return (
-    <Section>
+    <Section id={id}>
       <Container>
         <div className="text-center space-y-4">
           <h2 className="text-2xl font-bold">FAQ (stub)</h2>

@@ -44,7 +44,7 @@ export function Benefits({ title, subtitle, items }: BenefitsProps) {
         <div className="space-y-12">
           {/* Header */}
           <div className="text-center space-y-4 max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight leading-tight sm:text-4xl">
               {title}
             </h2>
             {subtitle && (

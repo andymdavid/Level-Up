@@ -24,6 +24,7 @@ interface HeroProps {
     text: string;
     href: string;
   };
+  onGetStarted?: () => void;
 }
 
 export function Hero({
@@ -34,6 +35,7 @@ export function Hero({
   socialProof,
   socialProofLogo,
   socialProofLink,
+  onGetStarted,
 }: HeroProps) {
   // Normalize CTA props to objects
   const primaryCta =
@@ -71,7 +73,7 @@ export function Hero({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="font-anton text-4xl tracking-tight sm:text-5xl md:text-6xl uppercase"
+            className="font-anton text-4xl tracking-tight leading-tight sm:text-5xl md:text-6xl uppercase"
           >
             {title}
           </motion.h1>
@@ -92,12 +94,24 @@ export function Hero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Button size="lg" asChild className="group hover:bg-[#a1ff62] hover:text-black">
-              <a href={primaryCta.href} target="_blank" rel="noopener noreferrer">
+            {onGetStarted ? (
+              <Button
+                size="lg"
+                className="group hover:bg-[#a1ff62] hover:text-black"
+                onClick={onGetStarted}
+                type="button"
+              >
                 {primaryCta.label}
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
-            </Button>
+              </Button>
+            ) : (
+              <Button size="lg" asChild className="group hover:bg-[#a1ff62] hover:text-black">
+                <a href={primaryCta.href} target="_blank" rel="noopener noreferrer">
+                  {primaryCta.label}
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </a>
+              </Button>
+            )}
           </motion.div>
 
           {/* Social Proof */}
@@ -106,44 +120,49 @@ export function Hero({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex items-center gap-2"
+              className="w-full flex justify-center sm:w-auto sm:justify-start"
             >
-              {socialProofLogo && (
-                <a
-                  href="https://otherstuff.ai"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-5 h-5 rounded border-[0.1px] border-neutral-700 bg-neutral-900 overflow-hidden flex items-center justify-center p-[1px]"
-                  aria-label="Other Stuff"
-                >
-                  <Image
-                    src={socialProofLogo}
-                    alt="Logo"
-                    width={16}
-                    height={16}
-                    className="object-contain rounded-[3px]"
-                  />
-                </a>
-              )}
-              <p className="text-xs text-muted-foreground">
-                {socialProofLink && socialProof
-                  ? socialProof.split(socialProofLink.text).map((part, i, arr) => (
-                      <span key={i}>
-                        {part}
-                        {i < arr.length - 1 && (
-                          <a
-                            href={socialProofLink.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="underline decoration-neutral-400/50 hover:decoration-neutral-400/70 transition-all"
-                          >
-                            {socialProofLink.text}
-                          </a>
-                        )}
-                      </span>
-                    ))
-                  : socialProof}
-              </p>
+              <div className="inline-grid grid-cols-[24px_minmax(0,220px)_24px] items-center gap-2 sm:flex sm:items-center sm:gap-2">
+                {socialProofLogo ? (
+                  <a
+                    href="https://otherstuff.ai"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-6 h-6 sm:w-5 sm:h-5 rounded border-[0.1px] border-neutral-700 bg-neutral-900 overflow-hidden flex items-center justify-center p-[1px]"
+                    aria-label="Other Stuff"
+                  >
+                    <Image
+                      src={socialProofLogo}
+                      alt="Logo"
+                      width={20}
+                      height={20}
+                      className="object-contain rounded-[3px]"
+                    />
+                  </a>
+                ) : (
+                  <span className="w-6 h-6 sm:hidden" aria-hidden="true" />
+                )}
+                <p className="text-xs text-muted-foreground text-center sm:text-left sm:max-w-none">
+                  {socialProofLink && socialProof
+                    ? socialProof.split(socialProofLink.text).map((part, i, arr) => (
+                        <span key={i}>
+                          {part}
+                          {i < arr.length - 1 && (
+                            <a
+                              href={socialProofLink.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline decoration-neutral-400/50 hover:decoration-neutral-400/70 transition-all"
+                            >
+                              {socialProofLink.text}
+                            </a>
+                          )}
+                        </span>
+                      ))
+                    : socialProof}
+                </p>
+                <span className="w-6 h-6 sm:hidden" aria-hidden="true" />
+              </div>
             </motion.div>
           )}
         </motion.div>

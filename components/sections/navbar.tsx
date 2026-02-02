@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,6 +22,11 @@ interface NavbarProps {
 
 export function Navbar({ links, cta }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleLinkClick = () => {
     setMenuOpen(false);
@@ -32,33 +37,44 @@ export function Navbar({ links, cta }: NavbarProps) {
       <div className="flex justify-center px-4">
         <nav className="flex items-center justify-between bg-black rounded-md p-2 w-full max-w-xl">
           {/* Menu Trigger */}
-          <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-            <SheetTrigger asChild>
-              <button className="flex items-center gap-2 text-white hover:text-white/80 transition-colors">
-                <Menu className="h-5 w-5" />
-                <span className="text-sm font-medium">Menu</span>
-              </button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] sm:w-[400px] bg-black border-r-neutral-800">
-              <SheetHeader>
-                <SheetTitle className="text-white font-bungee text-2xl tracking-tight">LEVEL-UP</SheetTitle>
-              </SheetHeader>
-              <div className="flex flex-col gap-4 mt-8">
-                <nav className="flex flex-col gap-2">
-                  {links.map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      onClick={handleLinkClick}
-                      className="block px-4 py-3 text-sm font-medium text-white rounded-md transition-colors hover:bg-neutral-800"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </nav>
-              </div>
-            </SheetContent>
-          </Sheet>
+          {mounted ? (
+            <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+              <SheetTrigger asChild>
+                <button className="flex items-center gap-2 text-white hover:text-white/80 transition-colors">
+                  <Menu className="h-5 w-5" />
+                  <span className="text-sm font-medium">Menu</span>
+                </button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-[300px] sm:w-[400px] bg-black border-r-neutral-800">
+                <SheetHeader>
+                  <SheetTitle className="text-white font-bungee text-2xl tracking-tight">LEVEL-UP</SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col gap-4 mt-8">
+                  <nav className="flex flex-col gap-2">
+                    {links.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        onClick={handleLinkClick}
+                        className="block px-4 py-3 text-sm font-medium text-white rounded-md transition-colors hover:bg-neutral-800"
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </nav>
+                </div>
+              </SheetContent>
+            </Sheet>
+          ) : (
+            <button
+              className="flex items-center gap-2 text-white/80"
+              type="button"
+              aria-hidden="true"
+            >
+              <Menu className="h-5 w-5" />
+              <span className="text-sm font-medium">Menu</span>
+            </button>
+          )}
 
           {/* Center Logo */}
           <a

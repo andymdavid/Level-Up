@@ -1,6 +1,5 @@
-import { siteContent } from "@/content/site";
-import { SectionRenderer } from "@/components/sections/registry";
+import { SiteShell } from "@/components/sections/site-shell";
 
 export default function Home() {
-  return <SectionRenderer sections={siteContent.sections} />;
+  return <SiteShell />;
 }

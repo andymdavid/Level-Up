@@ -12,6 +12,7 @@ interface ArcCarouselCard {
   description?: string;
   image?: string;
   badge?: string;
+  href?: string;
 }
 
 interface ArcCarouselProps {
@@ -170,6 +171,14 @@ export function ArcCarousel({
               }}
             >
               <Card className="overflow-hidden bg-neutral-900 border-neutral-800 shadow-[0_8px_30px_rgba(0,0,0,0.12)] p-1.5">
+                {card.href ? (
+                  <a
+                    href={card.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                    aria-label={card.title}
+                  >
                 {card.image ? (
                   <div className="relative aspect-[16/10] rounded-lg overflow-hidden">
                     <Image
@@ -194,7 +203,7 @@ export function ArcCarousel({
                     )}
                   </div>
                 )}
-                <CardContent className="px-0 pt-2 pb-0 bg-neutral-900">
+                <CardContent className="px-2 pt-2 pb-0 bg-neutral-900">
                   <h3 className="font-semibold text-sm text-white">{card.title}</h3>
                   {card.description && (
                     <p className="text-xs text-neutral-400 mt-1 line-clamp-2">
@@ -202,6 +211,43 @@ export function ArcCarousel({
                     </p>
                   )}
                 </CardContent>
+                  </a>
+                ) : (
+                  <>
+                    {card.image ? (
+                      <div className="relative aspect-[16/10] rounded-lg overflow-hidden">
+                        <Image
+                          src={card.image}
+                          alt={card.title}
+                          fill
+                          className="object-cover"
+                        />
+                        {card.badge && (
+                          <span className="absolute top-2 left-2 px-2 py-1 text-xs bg-[#a1ff62] text-black rounded font-medium">
+                            {card.badge}
+                          </span>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="relative aspect-[16/10] rounded-lg overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-900 flex items-center justify-center">
+                        <span className="text-4xl">🎮</span>
+                        {card.badge && (
+                          <span className="absolute top-2 left-2 px-2 py-1 text-xs bg-[#a1ff62] text-black rounded font-medium">
+                            {card.badge}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    <CardContent className="px-2 pt-2 pb-0 bg-neutral-900">
+                      <h3 className="font-semibold text-sm text-white">{card.title}</h3>
+                      {card.description && (
+                        <p className="text-xs text-neutral-400 mt-1 line-clamp-2">
+                          {card.description}
+                        </p>
+                      )}
+                    </CardContent>
+                  </>
+                )}
               </Card>
             </div>
           );

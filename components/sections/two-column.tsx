@@ -20,6 +20,7 @@ interface LevelUpCard {
 }
 
 interface TwoColumnProps {
+  id?: string;
   title: string;
   body: string;
   bodyLinks?: Array<{
@@ -29,6 +30,7 @@ interface TwoColumnProps {
   }>;
   bodyMobileSplitOn?: string;
   bodyMobileSplitParas?: string[];
+  anchorId?: string;
   profileLogo?: string;
   singleColumn?: boolean;
   fullHeight?: boolean;
@@ -61,6 +63,7 @@ interface TwoColumnProps {
 }
 
 export function TwoColumn({
+  id,
   title,
   body,
   singleColumn = false,
@@ -77,6 +80,7 @@ export function TwoColumn({
   bodyLinks,
   bodyMobileSplitOn,
   bodyMobileSplitParas,
+  anchorId,
   profileLogo,
   hideTitle = false,
   bodyVariant = "default",
@@ -201,7 +205,7 @@ export function TwoColumn({
   // Split layout: 50/50 with content left, image right
   if (layout === "split") {
     return (
-      <Section className="min-h-[75vh]">
+      <Section id={anchorId || id} className="min-h-[75vh]">
         <div className="grid md:grid-cols-2 min-h-[75vh]">
           {/* Content column */}
           <motion.div
@@ -210,7 +214,7 @@ export function TwoColumn({
             transition={{ duration: 0.5 }}
             className={`flex flex-col justify-center px-8 md:px-16 lg:px-24 py-16 ${splitReverse ? "md:order-2" : "md:order-1"}`}
           >
-            <h2 className="font-anton text-[40px] tracking-tight uppercase">
+            <h2 className="font-anton text-[40px] tracking-tight leading-tight uppercase">
               {title}
             </h2>
             {renderMobileParagraphs(body, "The workshop is facilitated")}
@@ -275,7 +279,7 @@ export function TwoColumn({
   }
 
   return (
-    <Section className={`${fullHeight ? "min-h-screen" : "min-h-[75vh]"} flex items-center`}>
+    <Section id={anchorId || id} className={`${fullHeight ? "min-h-screen" : "min-h-[75vh]"} flex items-center`}>
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -284,7 +288,7 @@ export function TwoColumn({
           className="max-w-5xl mx-auto"
         >
           {!hideTitle ? (
-            <h2 className="font-anton text-[40px] tracking-tight uppercase text-center">
+            <h2 className="font-anton text-[40px] tracking-tight leading-tight uppercase text-center">
               {title}
             </h2>
           ) : null}

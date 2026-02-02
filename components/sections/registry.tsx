@@ -30,9 +30,10 @@ const sectionComponents: Record<SectionKey, React.ComponentType<any>> = {
 
 interface SectionRendererProps {
   sections: SectionConfig[];
+  onGetStarted?: () => void;
 }
 
-export function SectionRenderer({ sections }: SectionRendererProps) {
+export function SectionRenderer({ sections, onGetStarted }: SectionRendererProps) {
   return (
     <>
       {sections.map((section, index) => {
@@ -60,7 +61,19 @@ export function SectionRenderer({ sections }: SectionRendererProps) {
         }
 
         // Render the section with its props
-        return <Component key={`${section.key}-${index}`} {...section.props} />;
+        const baseProps = { ...section.props, id: section.id };
+
+        if (section.key === "hero" || section.key === "finalCta") {
+          return (
+            <Component
+              key={`${section.key}-${index}`}
+              {...baseProps}
+              onGetStarted={onGetStarted}
+            />
+          );
+        }
+
+        return <Component key={`${section.key}-${index}`} {...baseProps} />;
       })}
     </>
   );

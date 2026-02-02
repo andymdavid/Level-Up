@@ -52,10 +52,13 @@ export const siteContent: SiteContent = {
       enabled: true,
       props: {
         links: [
-          { label: "Features", href: "#benefits" },
-          { label: "How It Works", href: "#howItWorks" },
-          { label: "Pricing", href: "#pricing" },
+          { label: "What is Level-Up", href: "#twoColumn" },
+          { label: "Why Games Work", href: "#twoColumn-2" },
+          { label: "Workshop Flow", href: "#twoColumn-3" },
+          { label: "Student Outcomes", href: "#twoColumn-4" },
+          { label: "Support for Schools", href: "#twoColumn-5" },
           { label: "FAQ", href: "#faq" },
+          { label: "Who we are", href: "#twoColumn-7" },
         ],
         cta: {
           label: "Login",
@@ -84,14 +87,14 @@ export const siteContent: SiteContent = {
       enabled: true,
       props: {
         cards: [
-          { id: "1", title: "Space Invaders", description: "Classic arcade shooter with AI enemies", badge: "Popular" },
-          { id: "2", title: "Platformer Adventure", description: "Jump and run with procedural levels" },
-          { id: "3", title: "Puzzle Quest", description: "AI-powered puzzle generation", badge: "New" },
-          { id: "4", title: "Racing Game", description: "Compete against AI opponents" },
-          { id: "5", title: "Tower Defense", description: "Strategic AI pathfinding" },
-          { id: "6", title: "RPG Battle", description: "Turn-based combat with smart enemies" },
-          { id: "7", title: "Maze Runner", description: "AI maze generation and solving" },
-          { id: "8", title: "Card Game", description: "AI opponent with learning strategies", badge: "Advanced" },
+          { id: "1", title: "Bullrun", description: "Dodge the bulls", image: "/bullrun.png", href: "https://bullrun.otherstuff.ai" },
+          { id: "2", title: "Cowkey Kong", description: "Keep climbing", image: "/cowkey.png", href: "https://cowkong.otherstuff.ai" },
+          { id: "3", title: "Frogger", description: "Avoid the cards", image: "/frogger.png", href: "https://frogger.otherstuff.ai" },
+          { id: "4", title: "Lemmings", description: "Classic lemmings", image: "/lemmings.png", href: "https://lemmings.otherstuff.ai" },
+          { id: "5", title: "Pong", description: "Classic Pong", image: "/pong.png", href: "https://pong.otherstuff.ai" },
+          { id: "6", title: "Satoshi's Garden", description: "Stack sats", image: "/satsgarden.png", href: "https://satsgarden.otherstuff.ai" },
+          { id: "7", title: "Chesstr", description: "Play chess", image: "/chesstr.png", href: "https://chesstr.otherstuff.ai" },
+          { id: "8", title: "Scramble", description: "Navigate the cave", image: "/scramble.png", href: "https://scramble.otherstuff.ai" },
         ],
         speed: 50,
         arcDepth: 60,
@@ -284,6 +287,7 @@ export const siteContent: SiteContent = {
       props: {
         title: "Frequently Asked Questions",
         body: "Here are answers to some of the common practical questions schools and teachers ask when considering Level Up.",
+        anchorId: "faq",
         singleColumn: true,
         faqItems: [
           {
